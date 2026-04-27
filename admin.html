@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>لوحة الإدارة | Al-Rafeeq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ---------------------------------------------------
+        GLOBAL MODERN RESET & ULTRA PREMIUM STYLING
+        تم تطوير التصميم ليكون عصري جداً ومناسب جداً للهواتف
+        دون أي تغيير في نظام الصفحة أو الفانكشناليتي
+        --------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.06) 0%, #ecf3fa 100%),
+                        linear-gradient(125deg, #fefbff 0%, #f1f5fc 100%);
+            margin: 0;
+            padding: 0;
+            color: #0b1120;
+            min-height: 100vh;
+        }
+
+        /* شريط علوي زجاجي فاخر مع تأثير blur */
+        header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(18px);
+            padding: 16px 5%;
+            border-bottom: 1px solid rgba(164, 53, 240, 0.2);
+            box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .brand-logo {
+            font-size: 1.85rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #7c3aed, #c084fc, #a855f7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.6px;
+            transition: transform 0.2s;
+        }
+
+        .admin-badge {
+            background: linear-gradient(105deg, #1e1b4b, #2d2a5e);
+            color: rgba(255, 255, 255, 0.95);
+            padding: 8px 18px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(4px);
+            letter-spacing: -0.2px;
+        }
+
+        /* الحاوية الرئيسية – بطاقة احترافية فائقة */
+        .admin-container {
+            max-width: 1300px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(2px);
+            padding: 35px 32px;
+            border-radius: 48px;
+            box-shadow: 0 35px 60px -20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(164, 53, 240, 0.1);
+            width: 92%;
+            transition: all 0.3s;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #0f172a, #2d3b4f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-bottom: 3px solid rgba(164, 53, 240, 0.3);
+            padding-bottom: 18px;
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: -0.4px;
+        }
+
+        /* منطقة الجدول مع سكرول أفقي ناعم مناسب للهواتف */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            border-radius: 24px;
+        }
+
+        /* الجدول بتصميم كارد مثلث الحواف والنقاء */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            text-align: right;
+            min-width: 680px;
+        }
+
+        th, td {
+            padding: 20px 18px;
+            border-bottom: 1px solid rgba(203, 213, 225, 0.5);
+            background-color: transparent;
+            transition: all 0.2s;
+        }
+
+        th {
+            background: rgba(248, 250, 252, 0.8);
+            color: #2c3e66;
+            font-weight: 800;
+            font-size: 0.9rem;
+            letter-spacing: -0.2px;
+            border-top: 1px solid rgba(164, 53, 240, 0.2);
+            border-bottom: 2px solid rgba(164, 53, 240, 0.3);
+        }
+
+        /* hover تفاعلي فاخر على الصفوف */
+        tbody tr {
+            transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        tbody tr:hover {
+            background: rgba(164, 53, 240, 0.03);
+            transform: scale(1.002);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        /* تصميم رابط عرض الإيصال (مميز جداً) */
+        a.view-img {
+            background: linear-gradient(95deg, #f3e8ff, #faf0ff);
+            color: #7c3aed;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 48px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            transition: all 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            line-height: 1;
+        }
+
+        a.view-img:before {
+            content: "📎";
+            font-size: 0.9rem;
+        }
+
+        a.view-img:hover {
+            background: #7c3aed;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 18px -8px rgba(124, 58, 237, 0.4);
+            border-color: transparent;
+        }
+
+        /* زر الموافقة – تصميم متطور */
+        .approve-btn {
+            background: linear-gradient(105deg, #10b981, #059669);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 48px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-family: inherit;
+            font-weight: 800;
+            transition: all 0.25s;
+            box-shadow: 0 8px 16px -8px rgba(16, 185, 129, 0.4);
+            min-width: 112px;
+            letter-spacing: -0.2px;
+        }
+
+        .approve-btn:active {
+            transform: scale(0.96);
+        }
+
+        .approve-btn:hover {
+            background: linear-gradient(105deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 22px -10px rgba(5, 150, 105, 0.5);
+        }
+
+        /* حالة "تم التفعيل" - badge جميل */
+        .status-approved {
+            background: rgba(16, 185, 129, 0.12);
+            color: #0b6e4f;
+            font-weight: 800;
+            font-size: 0.8rem;
+            padding: 8px 18px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-approved:before {
+            content: "✅";
+            font-size: 0.9rem;
+        }
+
+        /* رسالة فارغة مودرن */
+        .empty-msg {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            color: #475569;
+            margin-top: 30px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            display: none;
+            padding: 48px 20px;
+            border-radius: 52px;
+            border: 2px dashed rgba(124, 58, 237, 0.3);
+            width: 100%;
+        }
+
+        /* تحسين خلايا الجدول للهواتف مع الحفاظ على القراءة */
+        @media (max-width: 780px) {
+            .admin-container {
+                padding: 24px 18px;
+                margin: 24px auto;
+                border-radius: 36px;
+                width: 94%;
+            }
+            h1 {
+                font-size: 1.55rem;
+                padding-bottom: 12px;
+            }
+            th, td {
+                padding: 14px 12px;
+                font-size: 0.85rem;
+            }
+            .approve-btn {
+                padding: 9px 16px;
+                font-size: 0.75rem;
+                min-width: 96px;
+            }
+            a.view-img {
+                padding: 7px 16px;
+                font-size: 0.75rem;
+            }
+            .status-approved {
+                padding: 5px 14px;
+                font-size: 0.7rem;
+            }
+            .admin-badge {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+            }
+            .brand-logo {
+                font-size: 1.55rem;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .admin-container {
+                padding: 20px 14px;
+                border-radius: 32px;
+            }
+            th, td {
+                padding: 12px 8px;
+            }
+            .approve-btn {
+                padding: 8px 12px;
+                min-width: 82px;
+            }
+        }
+
+        /* تحسينات اللمس وزيادة مساحة النقر */
+        .approve-btn, a.view-img {
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        /* تخصيص شريط التمرير للجدول */
+        .table-responsive::-webkit-scrollbar {
+            height: 6px;
+        }
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f0f2f8;
+            border-radius: 20px;
+        }
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: #c084fc;
+            border-radius: 20px;
+        }
+
+        /* نص رقم الهاتف بشكل محترف */
+        td[dir="ltr"] {
+            font-feature-settings: 'tnum';
+            font-weight: 700;
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body style="display: none;" id="adminBody">
+
+    <header>
+        <div class="brand-logo">Al-Rafeeq</div>
+        <div class="admin-badge">لوحة تحكم الإدارة ✦</div>
+    </header>
+
+    <div class="admin-container">
+        <h1>طلبات الاشتراك الحديثة</h1>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>الاسم (الإيميل)</th>
+                        <th>رقم الموبايل المحول منه</th>
+                        <th>إيصال الدفع</th>
+                        <th>إجراءات التفعيل</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody">
+                    <!-- يتم تعبئة الطلبات ديناميكياً بواسطة JS -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="emptyMsg" class="empty-msg">🌟 لا توجد طلبات جديدة معلقة حالياً في النظام.</div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, getDocs, orderBy, query, doc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAoc1kX-2bC55aMFP6bqQQ3wk9r0estB3I",
+            authDomain: "web-course-98b84.firebaseapp.com",
+            projectId: "web-course-98b84",
+            storageBucket: "web-course-98b84.firebasestorage.app",
+            messagingSenderId: "633018474965",
+            appId: "1:633018474965:web:60e0b48f07911e0f389d5c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, (user) => {
+            // الحفاظ على نفس منطق الصفحة (بدون تغيير) – كما هو موجود مسبقاً
+            document.getElementById('adminBody').style.display = "block";
+            loadOrders();
+        });
+
+        async function loadOrders() {
+            const ordersTable = document.getElementById('ordersTableBody');
+            const emptyMsg = document.getElementById('emptyMsg');
+            const tableResponsive = document.querySelector('.table-responsive');
+            ordersTable.innerHTML = "";
+            
+            const q = query(collection(db, "orders"), orderBy("createdAt", "desc"));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.empty) {
+                emptyMsg.style.display = "block";
+                if(tableResponsive) tableResponsive.style.display = "none";
+                return;
+            } else {
+                emptyMsg.style.display = "none";
+                if(tableResponsive) tableResponsive.style.display = "block";
+            }
+
+            querySnapshot.forEach((docSnap) => {
+                const order = docSnap.data();
+                const orderId = docSnap.id;
+                
+                const actionHtml = order.status === 'pending' 
+                    ? `<button class="approve-btn" onclick="approveCourse('${orderId}', '${order.uid}')">موافقة وتفعيل</button>`
+                    : `<span class="status-approved">تم التفعيل</span>`;
+
+                const row = `
+                    <tr>
+                        <td>
+                            <strong style="color:#1e293b; font-weight:800;">${order.customerName || 'عميل'}</strong><br>
+                            <span style="font-size:0.75rem; color:#5b6e8c;">${order.email || ''}</span>
+                        </td>
+                        <td dir="ltr" style="text-align: right; font-weight:700; letter-spacing:0.3px;">${order.phoneNumber || 'غير محدد'}</td>
+                        <td><a href="${order.receiptUrl}" target="_blank" class="view-img">عرض الإيصال</a></td>
+                        <td>${actionHtml}</td>
+                    </tr>
+                `;
+                ordersTable.innerHTML += row;
+            });
+        }
+
+        window.approveCourse = async function(orderId, userUid) {
+            if(confirm("✅ هل تأكدت من صحة الإيصال وتريد تفعيل الوصول للكورس؟")) {
+                try {
+                    await updateDoc(doc(db, "orders", orderId), { status: "approved" });
+                    await setDoc(doc(db, "users_access", userUid), { access: true });
+                    
+                    alert("🎉 تم تفعيل الكورس للمستخدم بنجاح!");
+                    loadOrders(); 
+                } catch(error) {
+                    alert("⚠️ حصلت مشكلة أثناء التفعيل، يرجى المحاولة مجدداً.");
+                    console.error(error);
+                }
+            }
+        };
+    </script>
+</body>
+</html>

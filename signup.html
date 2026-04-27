@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>إنشاء حساب | Al-Rafeeq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ---------- RESET & GLOBAL MODERN ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at 15% 30%, rgba(139, 92, 246, 0.04) 0%, rgba(10, 20, 35, 0.02) 100%),
+                        linear-gradient(135deg, #f9faff 0%, #f0f3fd 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            direction: rtl;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* background dynamic glossy effect (purely visual,不影响结构) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 120%;
+            height: 140%;
+            background: radial-gradient(900px circle at 85% 20%, rgba(168, 85, 247, 0.08), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* main card — ultra modern with soft glass & elevated design */
+        .login-box {
+            background: rgba(255, 255, 255, 0.99);
+            backdrop-filter: blur(0px);
+            padding: 2.5rem 2rem;
+            border-radius: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18), 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            width: 100%;
+            max-width: 440px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.35s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* subtle hover enhancement (not intrusive) */
+        .login-box:hover {
+            box-shadow: 0 30px 55px -15px rgba(0, 0, 0, 0.22);
+            transform: translateY(-3px);
+        }
+
+        /* brand logo with premium gradient & refined after-line */
+        .brand-logo {
+            text-align: center;
+            font-size: 2.1rem;
+            font-weight: 900;
+            background: linear-gradient(125deg, #6d28d9 0%, #a855f7 45%, #c084fc 90%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.6px;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 2px 5px rgba(109, 40, 217, 0.1);
+            width: 100%;
+            position: relative;
+        }
+
+        .brand-logo::after {
+            content: '';
+            display: block;
+            width: 58px;
+            height: 3px;
+            background: linear-gradient(90deg, #a855f7, #c084fc, #e9d5ff);
+            margin: 12px auto 0;
+            border-radius: 4px;
+            opacity: 0.75;
+        }
+
+        h2 {
+            text-align: center;
+            color: #111827;
+            margin-top: 0.6rem;
+            margin-bottom: 1.8rem;
+            font-weight: 800;
+            font-size: 1.7rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #1e2a3a, #2d3e4f);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* modern labels */
+        label {
+            display: block;
+            text-align: right;
+            margin-bottom: 7px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #2c3e50;
+            letter-spacing: -0.2px;
+            padding-right: 5px;
+        }
+
+        /* inputs: clean, futuristic rounded corners */
+        input {
+            width: 100%;
+            padding: 15px 18px;
+            margin: 0 0 24px 0;
+            border: 1.8px solid #e9edf2;
+            border-radius: 22px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            direction: ltr;
+            transition: all 0.25s ease;
+            font-family: 'Tajawal', monospace;
+            background-color: #ffffff;
+            color: #1a2634;
+            font-weight: 500;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        input:focus {
+            border-color: #b45cf2;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(164, 53, 240, 0.15), 0 2px 6px rgba(0, 0, 0, 0.02);
+            background-color: #fefcff;
+        }
+
+        input::placeholder {
+            color: #acb8c5;
+            font-weight: 450;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            letter-spacing: -0.1px;
+        }
+
+        /* primary gradient button with modern motion */
+        .btn-primary {
+            background: linear-gradient(100deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            border-radius: 44px;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            font-family: inherit;
+            box-shadow: 0 10px 22px -8px rgba(124, 58, 237, 0.4);
+            letter-spacing: 0.3px;
+            margin-top: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* hover & active states improved for touch */
+        .btn-primary:active {
+            transform: scale(0.97);
+            box-shadow: 0 6px 14px -5px rgba(124, 58, 237, 0.6);
+            transition: 0.05s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(100deg, #6d28d9 0%, #9333ea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 28px -10px rgba(124, 58, 237, 0.55);
+        }
+
+        /* disabled/loading state for button (متناغم مع تغيير JS) */
+        .btn-primary:disabled {
+            opacity: 0.85;
+            transform: scale(0.98);
+            cursor: default;
+            background: linear-gradient(100deg, #9b6bcb, #b78ae6);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* error message: elegant toast-like shape */
+        .error-msg {
+            background: rgba(254, 235, 235, 0.96);
+            backdrop-filter: blur(2px);
+            color: #c52a2a;
+            padding: 14px 18px;
+            border-radius: 28px;
+            font-size: 0.85rem;
+            text-align: center;
+            display: none;
+            margin-bottom: 22px;
+            border: 1px solid rgba(197, 42, 42, 0.2);
+            line-height: 1.55;
+            font-weight: 650;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+        }
+
+        /* link styling with modern elegance */
+        .link {
+            text-align: center;
+            display: block;
+            margin-top: 28px;
+            color: #4a5b6e;
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 700;
+            transition: all 0.2s;
+            letter-spacing: -0.2px;
+            border-bottom: 1px dashed transparent;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 3px;
+        }
+
+        .link:hover {
+            color: #8b5cf6;
+            border-bottom-color: #c084fc;
+            transform: translateY(-1px);
+        }
+
+        /* ------------------------------
+        RESPONSIVE: EXCEPTIONAL MOBILE FIRST
+        -------------------------------- */
+        @media (max-width: 560px) {
+            body {
+                padding: 16px;
+                align-items: center;
+            }
+            .login-box {
+                padding: 1.8rem 1.4rem;
+                border-radius: 1.75rem;
+                max-width: 100%;
+                box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+            }
+            .brand-logo {
+                font-size: 1.85rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.4rem;
+            }
+            input {
+                padding: 14px 16px;
+                margin-bottom: 22px;
+                font-size: 0.95rem;
+                border-radius: 20px;
+            }
+            .btn-primary {
+                padding: 14px 18px;
+                font-size: 1rem;
+                border-radius: 40px;
+            }
+            label {
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+            }
+            .error-msg {
+                font-size: 0.8rem;
+                padding: 12px 15px;
+                border-radius: 26px;
+            }
+            .link {
+                margin-top: 22px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* tiny devices (<= 380px) extra comfort */
+        @media (max-width: 380px) {
+            .login-box {
+                padding: 1.5rem 1.2rem;
+                border-radius: 1.5rem;
+            }
+            .btn-primary {
+                padding: 13px 16px;
+            }
+            input {
+                padding: 12px 14px;
+            }
+        }
+
+        /* enhance LTR inputs for RTL interface */
+        input[type="email"], input[type="password"] {
+            font-feature-settings: 'ss02';
+            text-align: left;
+        }
+
+        /* remove default outline on touch devices */
+        input:focus-visible, button:focus-visible {
+            outline: 2px solid #a855f7;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <div class="brand-logo">Al-Rafeeq</div>
+    <h2>إنشاء حساب جديد</h2>
+    
+    <div id="errorMsg" class="error-msg"></div>
+    
+    <label>البريد الإلكتروني</label>
+    <input type="email" id="email" placeholder="name@example.com" dir="ltr" required>
+    
+    <label>كلمة المرور (6 أحرف على الأقل)</label>
+    <input type="password" id="password" placeholder="••••••••" dir="ltr" required>
+    
+    <button id="signupBtn" class="btn-primary">إنشاء الحساب</button>
+    <a href="login.html" class="link">لديك حساب بالفعل؟ سجل دخولك</a>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // إعدادات فايربيز كما هي (لم نغير أي شيء)
+  const firebaseConfig = {
+      apiKey: "AIzaSyAoc1kX-2bC55aMFP6bqQQ3wk9r0estB3I",
+      authDomain: "web-course-98b84.firebaseapp.com",
+      projectId: "web-course-98b84",
+      storageBucket: "web-course-98b84.firebasestorage.app",
+      messagingSenderId: "633018474965",
+      appId: "1:633018474965:web:60e0b48f07911e0f389d5c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById('signupBtn').addEventListener('click', () => {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const errorMsg = document.getElementById('errorMsg');
+      const signupBtn = document.getElementById('signupBtn');
+
+      // تفريغ الرسائل السابقة
+      errorMsg.style.display = "none";
+
+      if (!email || !password) {
+          errorMsg.style.display = "block";
+          errorMsg.innerText = "يرجى إدخال البريد الإلكتروني وكلمة المرور.";
+          return;
+      }
+
+      if (password.length < 6) {
+          errorMsg.style.display = "block";
+          errorMsg.innerText = "كلمة المرور يجب أن تكون 6 أحرف على الأقل.";
+          return;
+      }
+
+      // إظهار حالة التحميل للعميل
+      signupBtn.innerText = "جاري الإنشاء...";
+      signupBtn.style.opacity = "0.7";
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // أول ما يعمل الحساب، نحوله لصفحة الدفع مباشرة
+            window.location.href = "checkout.html";
+        })
+        .catch((error) => {
+            // إرجاع الزرار لحالته لو حصل مشكلة
+            signupBtn.innerText = "إنشاء الحساب";
+            signupBtn.style.opacity = "1";
+            
+            errorMsg.style.display = "block";
+            // معالجة خطأ لو الإيميل مستخدم قبل كده
+            if (error.code === 'auth/email-already-in-use') {
+                errorMsg.innerText = "هذا البريد الإلكتروني مستخدم بالفعل، يرجى تسجيل الدخول.";
+            } else {
+                errorMsg.innerText = "حصلت مشكلة، راجع البيانات أو جرب إيميل تاني.";
+            }
+        });
+  });
+</script>
+</body>
+</html>

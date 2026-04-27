@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>تسجيل الدخول | Al-Rafeeq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ------------------------------
+        GLOBAL RESET & MODERN BASE
+        -------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(circle at 10% 30%, rgba(139, 92, 246, 0.03) 0%, rgba(15, 15, 25, 0.02) 100%),
+                        linear-gradient(145deg, #f8faff 0%, #eff2fc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            direction: rtl;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* طبقة خلفية عصرية ديناميكية (دون تأثير على الهيكل) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(800px circle at 90% 20%, rgba(139, 92, 246, 0.08), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* بطاقة الدخول - احترافية فائقة مع زجاجية خفيفة وحديثة */
+        .login-box {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(0px);
+            padding: 2.5rem 2rem;
+            border-radius: 2rem;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 4px 12px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255,255,255,0.6);
+            width: 100%;
+            max-width: 440px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.25s ease, box-shadow 0.4s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* تأثير hover خفيف للبطاقة (يدعم الاحترافية) */
+        .login-box:hover {
+            box-shadow: 0 30px 55px -15px rgba(0, 0, 0, 0.25);
+            transform: translateY(-3px);
+        }
+
+        /* الهوية البصرية (الشعار النصي) بتصميم عصري وجريء */
+        .brand-logo {
+            text-align: center;
+            font-size: 2.1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 55%, #c084fc 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(124, 58, 237, 0.08);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* إضافة لمسة أنيقة أسفل الشعار */
+        .brand-logo::after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, #7c3aed, #c084fc);
+            margin: 12px auto 0;
+            border-radius: 4px;
+            opacity: 0.7;
+        }
+
+        h2 {
+            text-align: center;
+            color: #111827;
+            margin-top: 0.75rem;
+            margin-bottom: 1.75rem;
+            font-weight: 800;
+            font-size: 1.65rem;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #1f2937, #2d3a4b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* تسميات عصرية وواضحة */
+        label {
+            display: block;
+            text-align: right;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #2c3e44;
+            letter-spacing: -0.2px;
+            padding-right: 4px;
+        }
+
+        /* حقول الإدخال بتصميم حديث و minimal */
+        input {
+            width: 100%;
+            padding: 15px 18px;
+            margin: 0 0 24px 0;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            direction: ltr;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.4, 1);
+            font-family: 'Tajawal', monospace;
+            background-color: #ffffff;
+            color: #1e293b;
+            font-weight: 500;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        input:focus {
+            border-color: #a855f7;
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2), 0 2px 5px rgba(0, 0, 0, 0.02);
+            background-color: #fefeff;
+        }
+
+        /* تحسين مكان الإدخال placeholder */
+        input::placeholder {
+            color: #a0aec0;
+            font-weight: 450;
+            font-size: 0.9rem;
+            direction: ltr;
+            opacity: 0.8;
+        }
+
+        /* زر الدخول بتدرج لوني جذاب وتأثير ثلاثي الأبعاد خفيف */
+        .btn-primary {
+            background: linear-gradient(105deg, #7c3aed 0%, #a855f7 100%);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            box-shadow: 0 8px 20px -6px rgba(124, 58, 237, 0.4);
+            letter-spacing: 0.3px;
+            margin-top: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير موجة خفيفة عند الضغط للهواتف */
+        .btn-primary:active {
+            transform: scale(0.97);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.5);
+            transition: 0.05s;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(105deg, #6d28d9 0%, #9333ea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -10px rgba(124, 58, 237, 0.55);
+        }
+
+        /* رسالة الخطأ بتصميم احترافي وناعم */
+        .error-msg {
+            background: rgba(254, 226, 226, 0.95);
+            backdrop-filter: blur(2px);
+            color: #b91c1c;
+            padding: 14px 18px;
+            border-radius: 28px;
+            font-size: 0.85rem;
+            text-align: center;
+            display: none;
+            margin-bottom: 20px;
+            border: 1px solid rgba(185, 28, 28, 0.25);
+            line-height: 1.55;
+            font-weight: 600;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .error-msg a {
+            color: #b91c1c;
+            font-weight: 800;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s;
+        }
+
+        .error-msg a:hover {
+            opacity: 0.8;
+        }
+
+        /* رابط إنشاء حساب جديد بأناقة عالية */
+        .link {
+            text-align: center;
+            display: block;
+            margin-top: 28px;
+            color: #475569;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 650;
+            transition: all 0.2s;
+            letter-spacing: -0.2px;
+            border-bottom: 1px dashed transparent;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 2px;
+        }
+
+        .link:hover {
+            color: #7c3aed;
+            border-bottom-color: #c084fc;
+            transform: translateY(-1px);
+        }
+
+        /* تحسينات مخصصة للهواتف (عصرية ومريحة جداً) */
+        @media (max-width: 520px) {
+            body {
+                padding: 16px;
+                align-items: center;
+            }
+            .login-box {
+                padding: 1.8rem 1.4rem;
+                border-radius: 1.75rem;
+                max-width: 100%;
+                box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+            }
+            .brand-logo {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.45rem;
+                margin-bottom: 1.5rem;
+            }
+            input {
+                padding: 14px 16px;
+                margin-bottom: 20px;
+                font-size: 0.95rem;
+                border-radius: 18px;
+            }
+            .btn-primary {
+                padding: 14px 18px;
+                font-size: 1rem;
+            }
+            label {
+                font-size: 0.85rem;
+                margin-bottom: 6px;
+            }
+            .error-msg {
+                font-size: 0.8rem;
+                padding: 12px 14px;
+                border-radius: 24px;
+            }
+            .link {
+                margin-top: 24px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* إضافة تحسين للشاشات الصغيرة جداً (اقل من 380px) */
+        @media (max-width: 380px) {
+            .login-box {
+                padding: 1.5rem 1.2rem;
+            }
+            .btn-primary {
+                padding: 13px 16px;
+            }
+        }
+
+        /* لمسة احترافية: تحسين مؤشر التحميل (نفس النص لكن تصميم أفضل) */
+        .btn-primary:disabled {
+            opacity: 0.85;
+            transform: scale(0.98);
+            cursor: default;
+            background: linear-gradient(105deg, #a58bcf, #b48ad6);
+        }
+
+        /* تحسين الوضوح للارقام والايميلات */
+        input[type="email"], input[type="password"] {
+            font-feature-settings: 'ss02';
+            letter-spacing: 0.2px;
+        }
+
+        /* تحسين تفاعل اللمس على الروابط والأزرار */
+        .btn-primary, .link, input {
+            touch-action: manipulation;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <div class="brand-logo">Al-Rafeeq</div>
+    <h2>تسجيل الدخول</h2>
+    
+    <div id="errorMsg" class="error-msg"></div>
+    
+    <label>البريد الإلكتروني</label>
+    <input type="email" id="email" placeholder="name@example.com" required>
+    
+    <label>كلمة المرور</label>
+    <input type="password" id="password" placeholder="••••••••" required>
+    
+    <button id="loginBtn" class="btn-primary">تسجيل الدخول</button>
+    <a href="signup.html" class="link">ليس لديك حساب؟ أنشئ حساباً جديداً</a>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyAoc1kX-2bC55aMFP6bqQQ3wk9r0estB3I",
+      authDomain: "web-course-98b84.firebaseapp.com",
+      projectId: "web-course-98b84",
+      storageBucket: "web-course-98b84.firebasestorage.app",
+      messagingSenderId: "633018474965",
+      appId: "1:633018474965:web:60e0b48f07911e0f389d5c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const loginBtn = document.getElementById('loginBtn');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const errorMsgDiv = document.getElementById('errorMsg');
+
+  // إضافة تأثير Enter key للدخول السريع (تجربة عصرية)
+  const handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+          e.preventDefault();
+          loginBtn.click();
+      }
+  };
+  emailInput.addEventListener('keypress', handleKeyPress);
+  passwordInput.addEventListener('keypress', handleKeyPress);
+
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+      
+      // إعادة تعيين رسالة الخطأ
+      errorMsgDiv.style.display = "none";
+      errorMsgDiv.innerHTML = "";
+
+      if (!email || !password) {
+          errorMsgDiv.style.display = "block";
+          errorMsgDiv.innerText = "يرجى إدخال البريد الإلكتروني وكلمة المرور.";
+          return;
+      }
+
+      // حالة التحميل المتقدمة مع الحفاظ على النص 
+      const originalBtnText = loginBtn.innerText;
+      loginBtn.innerText = "جاري التحميل...";
+      loginBtn.style.opacity = "0.85";
+      loginBtn.disabled = true;
+
+      try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+          
+          // التحقق من access في Firestore
+          const accessDoc = await getDoc(doc(db, "users_access", user.uid));
+          
+          if (accessDoc.exists() && accessDoc.data().access === true) {
+              window.location.href = "course_player.html";
+          } else {
+              window.location.href = "checkout.html";
+          }
+      } catch (error) {
+          // استعادة الزر
+          loginBtn.innerText = originalBtnText;
+          loginBtn.style.opacity = "1";
+          loginBtn.disabled = false;
+          errorMsgDiv.style.display = "block";
+          
+          const errorCode = error.code;
+          // رسائل تفصيلية عصرية وسهلة الفهم
+          if (errorCode === 'auth/invalid-credential' || errorCode === 'auth/user-not-found' || errorCode === 'auth/wrong-password') {
+              errorMsgDiv.innerHTML = `⚠️ هذا الحساب غير موجود أو بيانات الدخول خاطئة.<br><br> <a href="signup.html">➡️ إنشاء حساب جديد</a>`;
+          } else if (errorCode === 'auth/invalid-email') {
+              errorMsgDiv.innerText = "📧 صيغة البريد الإلكتروني غير صحيحة. يرجى التحقق.";
+          } else if (errorCode === 'auth/too-many-requests') {
+              errorMsgDiv.innerText = "⏳ تم حظر الدخول مؤقتاً بسبب محاولات كثيرة خاطئة، يرجى المحاولة لاحقاً.";
+          } else if (errorCode === 'auth/network-request-failed') {
+              errorMsgDiv.innerText = "🌐 خطأ في الاتصال بالشبكة. تأكد من اتصالك بالإنترنت.";
+          } else {
+              errorMsgDiv.innerText = "❗ حدث خطأ غير متوقع أثناء الدخول، حاول مرة أخرى.";
+              console.error("Login error:", error);
+          }
+      }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>إتمام الشراء | Al-Rafeeq</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ---------------------------------------------------------------
+        RESET & ULTRA MODERN PROFESSIONAL DESIGN
+        تم تطوير التصميم ليكون احترافياً استثنائياً ومناسباً جداً للهواتف
+        مع الحفاظ الكامل على نظام الصفحة وفعالياتها الأصلية دون تغيير
+        --------------------------------------------------------------- */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(ellipse at 20% 30%, rgba(168, 85, 247, 0.08) 0%, #eef3fc 100%),
+                        linear-gradient(135deg, #fefcff 0%, #f2f6fe 100%);
+            color: #0a0f1c;
+            min-height: 100vh;
+        }
+
+        /* هيدر زجاجي فاخر */
+        header {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            padding: 18px 5%;
+            border-bottom: 1px solid rgba(164, 53, 240, 0.2);
+            box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+
+        header > div {
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+
+        .brand-logo {
+            font-size: 1.9rem;
+            font-weight: 900;
+            background: linear-gradient(125deg, #6d28d9, #a855f7, #c084fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.6px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        /* الحاوية الرئيسية - شبكة محسنة مع هوامر ذكية */
+        .checkout-wrapper {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        /* البطاقات – تصميم زجاجي رفيع بحواف ناعمة جداً */
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 34px 32px;
+            border-radius: 44px;
+            box-shadow: 0 25px 45px -18px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(164, 53, 240, 0.08);
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 32px 55px -20px rgba(0, 0, 0, 0.18);
+            transform: translateY(-3px);
+        }
+
+        h2 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 28px;
+            background: linear-gradient(120deg, #1e293b, #2d3e66);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            border-bottom: 3px solid rgba(164, 53, 240, 0.3);
+            padding-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        /* تعليمات الدفع – تصميم جذاب */
+        .payment-instructions {
+            background: linear-gradient(105deg, #faf5ff, #f3e8ff);
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            padding: 24px 20px;
+            margin-bottom: 32px;
+            text-align: center;
+            border-radius: 36px;
+            box-shadow: 0 6px 14px rgba(168, 85, 247, 0.08);
+        }
+
+        .payment-instructions p {
+            margin: 0 0 12px 0;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2d3a48;
+        }
+
+        .phone-number {
+            font-size: clamp(1.8rem, 6vw, 2.6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #7c3aed, #b45cf2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+            display: inline-block;
+            direction: ltr;
+            font-feature-settings: 'tnum';
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        /* الفورم وتنسيق الحقول */
+        .form-group {
+            margin-bottom: 28px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            font-weight: 800;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: #2c3e44;
+            letter-spacing: -0.2px;
+        }
+
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1.8px solid #e2e8f0;
+            border-radius: 28px;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+            font-family: inherit;
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 500;
+        }
+
+        input[type="text"]:focus, input[type="tel"]:focus {
+            outline: none;
+            border-color: #a855f7;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2);
+            background-color: #fefaff;
+        }
+
+        /* رفع الملف بتصميم عالٍ */
+        .file-upload-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .custom-file-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 36px 20px;
+            border: 2px dashed rgba(168, 85, 247, 0.5);
+            border-radius: 40px;
+            background: rgba(248, 245, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.25s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .custom-file-upload:hover {
+            border-color: #a855f7;
+            background: #faf0ff;
+            transform: translateY(-3px);
+            box-shadow: 0 14px 22px -12px rgba(168, 85, 247, 0.2);
+        }
+
+        .custom-file-upload svg {
+            width: 48px;
+            height: 48px;
+            color: #a855f7;
+            margin-bottom: 12px;
+            transition: transform 0.2s;
+        }
+
+        .custom-file-upload:hover svg {
+            transform: translateY(-4px);
+        }
+
+        .upload-text {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .upload-subtext {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* الزر الرئيسي بتدرج أنيق */
+        .btn-primary {
+            background: linear-gradient(105deg, #7c3aed, #a855f7);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 18px;
+            border-radius: 60px;
+            transition: all 0.25s;
+            box-shadow: 0 12px 25px -12px rgba(124, 58, 237, 0.45);
+            font-family: inherit;
+            letter-spacing: -0.3px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(105deg, #6d28d9, #9333ea);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px -12px rgba(124, 58, 237, 0.6);
+        }
+
+        .btn-primary:disabled {
+            background: linear-gradient(105deg, #b3a0c7, #cbb2e0);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            opacity: 0.8;
+        }
+
+        /* ملخص الطلب - تصميم كرت عصري */
+        .order-summary {
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .course-details {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 28px;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .course-thumb {
+            min-width: 85px;
+            height: 85px;
+            background: linear-gradient(145deg, #1f2937, #2d3a4f);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 0.8rem;
+            box-shadow: 0 10px 15px -8px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 0 0 6px 0;
+            line-height: 1.4;
+            color: #0f172a;
+        }
+
+        .course-author {
+            font-size: 0.85rem;
+            color: #5b6e8c;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #334155;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.65rem;
+            font-weight: 900;
+            border-top: 2px dashed rgba(124, 58, 237, 0.3);
+            padding-top: 22px;
+            margin-top: 22px;
+            color: #7c3aed;
+        }
+
+        /* رسالة الحالة */
+        #statusMsg {
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-top: 18px;
+            background: rgba(168, 85, 247, 0.08);
+            padding: 12px;
+            border-radius: 44px;
+            color: #7c3aed;
+        }
+
+        /* =========================================
+           RESPONSIVENESS فائقة الدقة للهواتف
+           ========================================= */
+        @media (max-width: 860px) {
+            .checkout-wrapper {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                margin: 24px auto;
+                padding: 0 18px;
+            }
+            .order-summary {
+                grid-row: 1;
+            }
+            .card {
+                padding: 28px 22px;
+                border-radius: 36px;
+            }
+            h2 {
+                font-size: 1.65rem;
+                margin-bottom: 22px;
+            }
+            .course-details {
+                flex-direction: column;
+                text-align: center;
+            }
+            .course-thumb {
+                margin-bottom: 12px;
+                width: 100%;
+                height: 110px;
+                font-size: 1rem;
+            }
+            .btn-primary {
+                padding: 16px 20px;
+                font-size: 1rem;
+            }
+            .custom-file-upload {
+                padding: 28px 16px;
+            }
+            .phone-number {
+                font-size: 1.7rem;
+            }
+            .payment-instructions {
+                padding: 20px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkout-wrapper {
+                padding: 0 14px;
+            }
+            .card {
+                padding: 22px 18px;
+                border-radius: 32px;
+            }
+            h2 {
+                font-size: 1.45rem;
+            }
+            .custom-file-upload svg {
+                width: 38px;
+                height: 38px;
+            }
+            .upload-text {
+                font-size: 0.9rem;
+            }
+            .total-row {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* تحسينات اللمس وزيادة المساحات */
+        .btn-primary, .custom-file-upload, input, .phone-number {
+            touch-action: manipulation;
+        }
+
+        /* تحسين عرض رقم الهاتف */
+        .phone-number {
+            word-break: keep-all;
+        }
+    </style>
+</head>
+<body style="display: none;" id="bodyContent">
+
+    <header>
+        <div style="max-width: 1050px; margin: 0 auto;">
+            <a href="index.html" class="brand-logo">Al-Rafeeq</a>
+        </div>
+    </header>
+
+    <div class="checkout-wrapper">
+        <div class="card">
+            <h2>إتمام عملية الدفع</h2>
+            <div class="payment-instructions">
+                <p>قم بتحويل المبلغ المطلوب عبر فودافون كاش إلى:</p>
+                <span class="phone-number">01080525816</span>
+            </div>
+
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label>الاسم بالكامل</label>
+                    <input type="text" id="fullName" placeholder="اكتب اسمك ثلاثي" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم الموبايل المحول منه</label>
+                    <input type="tel" id="phoneNumber" placeholder="+20" dir="ltr" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>صورة إيصال التحويل (سكرين شوت)</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="receiptImage" accept="image/*" required>
+                        <label for="receiptImage" class="custom-file-upload">
+                            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"></path>
+                            </svg>
+                            <span class="upload-text">اضغط هنا لاختيار صورة الإيصال</span>
+                            <span id="fileNameDisplay" class="upload-subtext">أو قم بسحب وإفلات الصورة هنا (JPG, PNG)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-primary">تأكيد الدفع وإرسال الطلب</button>
+                <p id="statusMsg" style="text-align: center; font-size: 15px; font-weight: 700; color: #a435f0; margin-top: 15px; display: none;">
+                    جاري رفع الإيصال وتأكيد الطلب... يرجى الانتظار.
+                </p>
+            </form>
+        </div>
+
+        <div class="card order-summary">
+            <h2>ملخص الطلب</h2>
+            <div class="course-details">
+                <div class="course-thumb">Al-Rafeeq</div>
+                <div>
+                    <p class="course-title">دورة تعلم تصميم وتطوير مواقع الويب | مستوى تأسيسي</p>
+                    <p class="course-author">بواسطة: Al-Rafeeq</p>
+                </div>
+            </div>
+            <div class="price-row">
+                <span>الإجمالي المطلوب:</span>
+                <span>100.00 ج.م</span>
+            </div>
+            <div class="total-row">
+                <span>الإجمالي</span>
+                <span>EGP 100.00</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // عرض اسم الملف عند اختيار الصورة (تحسين تجربة المستخدم)
+        document.getElementById('receiptImage').addEventListener('change', function(e) {
+            const fileNameDisplay = document.getElementById('fileNameDisplay');
+            if (e.target.files.length > 0) {
+                fileNameDisplay.innerText = "✓ تم إرفاق: " + e.target.files[0].name;
+                fileNameDisplay.style.color = "#10b981"; 
+                fileNameDisplay.style.fontWeight = "800";
+            } else {
+                fileNameDisplay.innerText = "أو قم بسحب وإفلات الصورة هنا (JPG, PNG)";
+                fileNameDisplay.style.color = "#64748b";
+                fileNameDisplay.style.fontWeight = "500";
+            }
+        });
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAoc1kX-2bC55aMFP6bqQQ3wk9r0estB3I",
+            authDomain: "web-course-98b84.firebaseapp.com",
+            projectId: "web-course-98b84",
+            storageBucket: "web-course-98b84.firebasestorage.app",
+            messagingSenderId: "633018474965",
+            appId: "1:633018474965:web:60e0b48f07911e0f389d5c"
+        };
+        const IMGBB_API_KEY = "bae33587b0e4cb95d51bb962caacb6f5";
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                document.getElementById('bodyContent').style.display = "block";
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const statusMsg = document.getElementById('statusMsg');
+            
+            const file = document.getElementById('receiptImage').files[0];
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phoneNumber').value;
+
+            if (!file) {
+                statusMsg.style.display = "block";
+                statusMsg.innerText = "⚠️ يرجى رفع صورة الإيصال.";
+                statusMsg.style.color = "#c52a2a";
+                return;
+            }
+
+            submitBtn.disabled = true;
+            statusMsg.style.display = "block";
+            statusMsg.innerText = "جاري رفع الإيصال...";
+            statusMsg.style.color = "#a855f7";
+
+            try {
+                const formData = new FormData();
+                formData.append("image", file);
+                
+                const imgbbResponse = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                    method: "POST",
+                    body: formData
+                });
+                const imgbbData = await imgbbResponse.json();
+                
+                if (!imgbbData.success) throw new Error("فشل رفع الصورة");
+                
+                const downloadURL = imgbbData.data.url;
+                statusMsg.innerText = "جاري حفظ بيانات الطلب...";
+
+                await addDoc(collection(db, "orders"), {
+                    uid: currentUser.uid,
+                    email: currentUser.email,
+                    customerName: name,
+                    phoneNumber: phone,
+                    receiptUrl: downloadURL,
+                    status: "pending",
+                    createdAt: serverTimestamp()
+                });
+
+                window.location.href = "success.html";
+                
+            } catch (error) {
+                console.error("Error: ", error);
+                statusMsg.innerText = "❌ حصلت مشكلة، جرب تاني.";
+                statusMsg.style.color = "#dc2626";
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
